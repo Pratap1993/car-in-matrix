@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Table, Directions, Robot, IPosition } from './robo';
+import { Table, Robot, Directions, IPosition } from './robot';
 
 test("should create a 5x5 matrix", () => {
     const tableTop = new Table();

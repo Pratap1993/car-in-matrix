@@ -1,15 +1,15 @@
 import React from 'react';
 import './App.css';
-import { Robot } from './robot';
-import RoboContainer from './component/RoboContainer';
+import { Car } from './car';
+import CarContainer from './component/CarContainer';
 
-const robo = new Robot();
+const car = new Car();
 
 const App: React.FC = () => {
-  const robo = new Robot();
+  const car = new Car();
   return (
     <div className="App" >
-       <RoboContainer robo={robo} />
+       <CarContainer car={car} />
     </div>
   );
 }

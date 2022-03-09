@@ -1,4 +1,4 @@
-import { IPosition, Directions } from "../robot";
+import { IPosition, Directions } from "../car";
 
 import React from "react";
 
@@ -20,7 +20,7 @@ function renderRows(position: IPosition, direction: Directions) {
         for (var i = 0; i<= size; i++) {
             if(position.x >= -1 && position.y >= -1 && position.x <= size && position.y <= size){
                 if (position.x === i && position.y === j) {
-                columns.push(<td style={{ height: "70px", width: "70px", border: "1px solid" }}><span style={{fontSize : "15px"}}><img src={require('../images.jpeg') } className={robotDirection(direction)} width="40" height="50" id="image"/></span></td>);
+                columns.push(<td style={{ height: "70px", width: "70px", border: "1px solid" }}><span style={{fontSize : "15px"}}><img src={require('../images.jpeg') } className={carDirection(direction)} width="40" height="50" id="image"/></span></td>);
                 }
                 else {
                     columns.push(<td style={{ height: "70px", width: "70px", border: "1px solid" }}></td>);
@@ -44,7 +44,7 @@ const Maze: React.FC<MazeProps> = (props) => {
     );
 }
 
-function robotDirection(direction: Directions): string {
+function carDirection(direction: Directions): string {
     if (direction != null && direction === 0){
         return "rotateimg0";
     }else if(direction != null && direction === 1){

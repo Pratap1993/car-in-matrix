@@ -7,22 +7,22 @@ export enum Directions {
     'WEST' = 3,
 }
 /**
- * x and y represent the position of robot. 
+ * x and y represent the position of car. 
  */
 export interface IPosition {
     x: number;
     y: number;
 }
 /**
- * The position of robot with directions.
+ * The position of car with directions.
  */
-export interface IRobotOptions {
+export interface ICarOptions {
     position: IPosition;
     direction: Directions;
 }
 
 
-export class Robot {
+export class Car {
 
     private direction: Directions;
     private position: IPosition;
@@ -36,7 +36,7 @@ export class Robot {
         this.yMax = 5;
     }
 
-    //Place the robot at intitial position
+    //Place the car at intitial position
     public place(_newx: string, _newy: string, _newDirection: string): void {
         let newx = parseInt(_newx, 10);
         let newy = parseInt(_newy, 10);
@@ -62,12 +62,12 @@ export class Robot {
         return this.direction = newDirection;
     }
 
-    private isRobotOnBoard(): boolean {
+    private isCarOnBoard(): boolean {
         return this.position.x != -1 && this.position.y != -1 && this.direction != -1;
     }
 
     private canBeMove(): boolean {
-        if (!this.isRobotOnBoard())
+        if (!this.isCarOnBoard())
             return false;
         if ((this.direction == 0 && this.position.y == this.yMax) || (this.direction == 2 && this.position.y == 0) ||
             (this.direction == 3 && this.position.x == 0) || (this.direction == 1 && this.position.x == this.xMax))
@@ -100,7 +100,7 @@ export class Robot {
         return `${this.position.x}, ${this.position.y}, ${this.direction}`;
     }
 
-    public getRobotDirectionWithPosition(): IRobotOptions {
+    public getCarDirectionWithPosition(): ICarOptions {
         return { position: this.position, direction: this.direction };;
     }
 
@@ -136,7 +136,7 @@ export class Table {
 
 export class Command {
 
-    private robot: Robot = new Robot;
+    private car: Car = new Car;
     private table: Table;
 
     constructor(table: Table) {
@@ -145,27 +145,27 @@ export class Command {
 
     public execute(command: string): void {
 
-        if (this.robot) {
+        if (this.car) {
             switch (command) {
                 case 'LEFT':
-                    this.robot.turnLeft();
+                    this.car.turnLeft();
                     break;
                 case 'RIGHT':
-                    this.robot.turnRight();
+                    this.car.turnRight();
                     break;
                 case 'MOVE':
-                    this.robot.move();
+                    this.car.move();
                     break;
                 case 'REPORT':
-                    process.stdout.write(this.robot.toString() + '\n');
+                    process.stdout.write(this.car.toString() + '\n');
                     break;
                 default:
             }
         }
 
-        if (command === 'PLACE' && !this.robot) {
-            this.robot = new Robot();
-            this.robot.place("3", "3", "EAST");
+        if (command === 'PLACE' && !this.car) {
+            this.car = new Car();
+            this.car.place("3", "3", "EAST");
         }
     }
 }

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Table, Robot, Directions, IPosition } from './robot';
+import { Table, Car, Directions, IPosition } from './car';
 
 test("should create a 5x5 matrix", () => {
     const tableTop = new Table();
@@ -50,56 +50,56 @@ test("should be false when not border coordinates", () => {
 })
 
 test("should be initialized with the given params", () => {
-    const robot: Robot = new Robot();
-    robot.place("3", "3", "SOUTH")
+    const car: Car = new Car();
+    car.place("3", "3", "SOUTH")
 
-    expect(robot.toString()).to.eq('3, 3, 2');
-    expect(robot.getDirections()).to.eq(Directions.SOUTH);
+    expect(car.toString()).to.eq('3, 3, 2');
+    expect(car.getDirections()).to.eq(Directions.SOUTH);
 })
 
-test("should turn the robot left", () => {
-    const robot: Robot = new Robot();
-    robot.place("3", "3", "NORTH");
+test("should turn the car left", () => {
+    const car: Car = new Car();
+    car.place("3", "3", "NORTH");
 
-    expect(robot.getDirections()).to.eq(Directions.NORTH);
+    expect(car.getDirections()).to.eq(Directions.NORTH);
 
-    expect(robot.turnLeft()).to.eq(Directions.WEST);
-    expect(robot.getDirections()).to.eq(Directions.WEST);
+    expect(car.turnLeft()).to.eq(Directions.WEST);
+    expect(car.getDirections()).to.eq(Directions.WEST);
 
-    expect(robot.turnLeft()).to.eq(Directions.SOUTH);
-    expect(robot.getDirections()).to.eq(Directions.SOUTH);
+    expect(car.turnLeft()).to.eq(Directions.SOUTH);
+    expect(car.getDirections()).to.eq(Directions.SOUTH);
 
-    expect(robot.turnLeft()).to.eq(Directions.EAST);
-    expect(robot.turnLeft()).to.eq(Directions.NORTH);
+    expect(car.turnLeft()).to.eq(Directions.EAST);
+    expect(car.turnLeft()).to.eq(Directions.NORTH);
 })
 
-test("should turn the robot right", () => {
-    const robot2: Robot = new Robot();
-    robot2.place("3", "3", "NORTH");
-    expect(robot2.getDirections()).to.eq(Directions.NORTH);
+test("should turn the car right", () => {
+    const car2: Car = new Car();
+    car2.place("3", "3", "NORTH");
+    expect(car2.getDirections()).to.eq(Directions.NORTH);
 
-    expect(robot2.turnRight()).to.eq(Directions.EAST);
-    expect(robot2.getDirections()).to.eq(Directions.EAST);
+    expect(car2.turnRight()).to.eq(Directions.EAST);
+    expect(car2.getDirections()).to.eq(Directions.EAST);
 
-    expect(robot2.turnRight()).to.eq(Directions.SOUTH);
-    expect(robot2.turnRight()).to.eq(Directions.WEST);
-    expect(robot2.turnRight()).to.eq(Directions.NORTH);
+    expect(car2.turnRight()).to.eq(Directions.SOUTH);
+    expect(car2.turnRight()).to.eq(Directions.WEST);
+    expect(car2.turnRight()).to.eq(Directions.NORTH);
 })
 
 test("should be move in front direction", () => {
-    const robot: Robot = new Robot();
-    robot.place("3", "4", "NORTH");
-    robot.move();
+    const car: Car = new Car();
+    car.place("3", "4", "NORTH");
+    car.move();
     const position: IPosition = { x: 3, y: 5 };
-    expect(robot.getPositions()).to.eql(position);
-    expect(robot.getDirections()).to.eq(Directions.NORTH)
+    expect(car.getPositions()).to.eql(position);
+    expect(car.getDirections()).to.eq(Directions.NORTH)
 })
 
 test("should not be move in front direction, because its on top", () => {
-    const robot: Robot = new Robot();
-    robot.place("3", "5", "NORTH");
-    robot.move();
+    const car: Car = new Car();
+    car.place("3", "5", "NORTH");
+    car.move();
     const position: IPosition = { x: 3, y: 5 };
-    expect(robot.getPositions()).to.eql(position);
-    expect(robot.getDirections()).to.eq(Directions.NORTH)
+    expect(car.getPositions()).to.eql(position);
+    expect(car.getDirections()).to.eq(Directions.NORTH)
 })
